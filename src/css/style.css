@@ -275,6 +275,9 @@ header.top .header-content .sub-header {
   margin: 0 auto;
   margin-top: 2vh;
 }
+.burger-paradise-menu-disabled {
+  grid-template-columns: 2fr 1fr;
+}
 .burger-paradise > * {
   overflow-y: scroll;
   overflow-x: hidden;

@@ -17,7 +17,8 @@ class App extends React.Component {
 
     state = {
         burgers: {},
-        order: {}
+        order: {},
+        adminMenuEnabled: false
     };
 
     componentDidMount() {
@@ -93,20 +94,26 @@ class App extends React.Component {
         window.location.reload();
     }
 
+    toggleAdminMenu = () => {
+        this.setState(({ adminMenuEnabled }) => ({ adminMenuEnabled: !adminMenuEnabled }));
+    }
+
     render() {
+        const { adminMenuEnabled, burgers } = this.state;
         return (
             <SignIn>
-                <div className='burger-paradise'>
+                <button onClick={() => this.toggleAdminMenu()}>{adminMenuEnabled ? 'Администратор' : 'Пользователь'}</button>
+                <div className={adminMenuEnabled ? 'burger-paradise' : 'burger-paradise burger-paradise-menu-disabled'}>
                     <div className='menu'>
                         <Header title='Hot Burgers' />
                         <ul className='burgers'>
-                            {Object.keys(this.state.burgers).map(key => {
+                            {Object.keys(burgers).map(key => {
                                 return (
                                     <Burger
                                         key={key}
                                         index={key}
                                         addToOrder={this.addToOrder}
-                                        details={this.state.burgers[key]}
+                                        details={burgers[key]}
                                     />
                                 )
                             })}
@@ -119,15 +126,16 @@ class App extends React.Component {
                         deleteFromOrder={this.deleteFromOrder}
                     />
 
-                    <MenuAdmin
-                        addBurger={this.addBurger}
-                        loadSampleBurgers={this.loadSampleBurgers}
-                        burgers={this.state.burgers}
-                        updatedBurger={this.updatedBurger}
-                        deleteBurger={this.deleteBurger}
-                        handleLogOut={this.handleLogOut}
-                    />
-
+                    {this.state.adminMenuEnabled
+                        ? <MenuAdmin
+                            addBurger={this.addBurger}
+                            loadSampleBurgers={this.loadSampleBurgers}
+                            burgers={this.state.burgers}
+                            updatedBurger={this.updatedBurger}
+                            deleteBurger={this.deleteBurger}
+                            handleLogOut={this.handleLogOut}
+                        />
+                        : null}
                 </div>
             </SignIn>
         )
