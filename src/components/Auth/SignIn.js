@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import firebase from "firebase/app";
-import { firebaseApp, firevaseApp } from '../../base';
+import { firebaseApp } from '../../base';
 
 class SignIn extends React.Component {
 
