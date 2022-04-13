@@ -18,7 +18,7 @@ class App extends React.Component {
     state = {
         burgers: {},
         order: {},
-        adminMenuEnabled: false
+        adminMenuEnabled: true
     };
 
     componentDidMount() {
@@ -103,7 +103,7 @@ class App extends React.Component {
         return (
             <SignIn>
                 <button onClick={() => this.toggleAdminMenu()}>{adminMenuEnabled ? 'Администратор' : 'Пользователь'}</button>
-                <div className={adminMenuEnabled ? 'burger-paradise' : 'burger-paradise burger-paradise-menu-disabled'}>
+                <div className={adminMenuEnabled ? 'burger-paradise' : 'burger-paradise burger-paradise-user'}>
                     <div className='menu'>
                         <Header title='Hot Burgers' />
                         <ul className='burgers'>

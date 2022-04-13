@@ -275,9 +275,6 @@ header.top .header-content .sub-header {
   margin: 0 auto;
   margin-top: 2vh;
 }
-.burger-paradise-menu-disabled {
-  grid-template-columns: 2fr 1fr;
-}
 .burger-paradise > * {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -295,6 +292,9 @@ header.top .header-content .sub-header {
 .burger-paradise > *:last-child {
   background: #ededed;
   padding: 2rem;
+}
+.burger-paradise-user {
+  grid-template-columns: 2fr 1fr;
 }
 ul {
   list-style: none;

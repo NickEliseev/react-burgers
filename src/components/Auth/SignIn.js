@@ -13,6 +13,11 @@ class SignIn extends React.Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.authHandler({ user })
+            } else {
+                const localUser = localStorage.getItem('user');
+                if (localUser) {
+                    this.setState({ user: localUser })
+                }
             }
         })
     };
@@ -31,9 +36,14 @@ class SignIn extends React.Component {
             .then(this.authHandler)
     }
 
+    demoAuth = () => {
+        this.setState({ user: 'demo' });
+        localStorage.setItem('user', 'demo')
+    }
+
     render() {
         if (!this.state.user) {
-            return <Login authenticate={this.authenticate} />
+            return <Login authenticate={this.authenticate} demoAuth={this.demoAuth} />
         }
         return this.props.children;
     }
